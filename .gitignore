@@ -1,0 +1,22 @@
+
+# compiled output
+
+# dependencies
+/node_modules
+sql.js
+
+# IDEs and editors
+
+# Logs
+/logs
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+.env
+
+package-lock.json
