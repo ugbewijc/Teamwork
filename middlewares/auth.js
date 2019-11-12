@@ -9,9 +9,6 @@ const auth = (req, res, next) => {
     if (util.verifyUserToken(userToken)) {
       next();
     }
-    if (util.verifyAdminToken(userToken)) { // check if the user is admin
-      next();
-    }
   } catch (e) {
     res.json({ status: 'error', error: 'User Not Logged In' });
   }

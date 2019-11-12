@@ -39,8 +39,21 @@ const doUserEmailExsit = (email) => {
   }
 };
 
+const getUserByEmail = (email) => {
+  // Validate Email
+  if (!validator.isEmail(email)) {
+    throw new Error('Invalid email');
+  }
+  // check if email exsit
+  return models.getUserByEmail(email).then((res) => {
+    if (res[0] === undefined) {
+      throw new Error('User Doesnt Exit');
+    }
+    return res[0];
+  });
+};
+
 const createNewUser = (reqBody) => {
-  // console.log(' createNewUser on Service is Called');
   const errArray = [];
   if (!validator.isLength(reqBody.firstName, { min: 1 })) { errArray.push('First Name is Required'); }
   if (!validator.isLength(reqBody.lastName, { min: 1 })) { errArray.push(' Last Name is Required'); }
@@ -59,9 +72,9 @@ const createNewUser = (reqBody) => {
   }
 };
 
-
 module.exports = {
   userValidation,
   doUserEmailExsit,
   createNewUser,
+  getUserByEmail,
 };

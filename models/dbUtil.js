@@ -28,17 +28,13 @@ const runQuery = queryText => (async () => {
   let result;
   try {
     const res = await client.query(queryText);
-    result = res.rows;
+    result = await res.rows;
   } finally {
     client.release();
   }
   return result;
-})().catch((e) => { throw e; });
+})().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
 
-/* getUserByMailnPwd function
-  retrive user details by user's email and pasword
-  return user's ID
-*/
 const getUserByMailnPwd = queryText => (async () => {
   const client = await pool.connect();
   let result;
@@ -49,19 +45,19 @@ const getUserByMailnPwd = queryText => (async () => {
     client.release();
   }
   return result;
-})().catch((e) => { throw e; });
+})().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
 
 const insertQuery = (queryText, values) => (async () => {
   const client = await pool.connect();
   let result;
   try {
     const res = await client.query(queryText, values);
-    result = res.rows[0].user_id;
+    result = await res.rows[0];
   } finally {
     client.release();
   }
   return result;
-})().catch((e) => { throw e; });
+})().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
 
 module.exports = {
   runQuery,

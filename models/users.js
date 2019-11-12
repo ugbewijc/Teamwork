@@ -20,7 +20,7 @@ const getUserByMailAndPwd = (email, password) => {
       return { uid: process.env.AID, isAdmin: true };
     }
     return getUserByEmail(email).then((uid) => {
-      if (!uid[0].password) {
+      if (!uid[0]) {
         throw new Error('Invalid Email or Password');
       }
       // console.log(uid);
@@ -49,7 +49,7 @@ const saveUser = (items) => {
     items.jobRole,
     items.department,
   ];
-  return insertQuery(sqlStatement, values);
+  return insertQuery(sqlStatement, values).then(result => result.user_id);
 };
 
 module.exports = {

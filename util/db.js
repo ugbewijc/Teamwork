@@ -1,22 +1,17 @@
 require('dotenv').config();
 const { Pool } = require('pg');
-// or native libpq bindings
-// var pg = require('pg').native
-
-// 'postgres://hfdzyaex:LHI2_1X0-P7byAJyMdS_J_a2B2menBSC@salt.db.elephantsql.com:5432/hfdzyaex'; // Can be found in the Details page
 
 const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
 });
 
 pool.on('connect', () => {
-  console.log('connected to the db');
+  // console.log('connected to the db');
 });
 
 const runQuery = (query) => {
   pool.query(query)
     .then((res) => {
-      // console.log(res);
       pool.end();
       return res;
     })
