@@ -5,24 +5,6 @@ const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
 });
 
-/*
-const runQuery = (queryText) => {
-  // console.log(queryText);
-  let result;
-  (async () => {
-    const client = await pool.connect();
-    try {
-      const res = await client.query(queryText);
-      // console.log(res.rows);
-      result = res.rows; // JSON.parse()
-    } finally {
-      client.release();
-    }
-  })().catch((e) => { throw e; });
-
-  return result;
-};
-*/
 const runQuery = queryText => (async () => {
   const client = await pool.connect();
   let result;
@@ -52,7 +34,7 @@ const insertQuery = (queryText, values) => (async () => {
   let result;
   try {
     const res = await client.query(queryText, values);
-    result = await res.rows[0];
+    result = await res.rows;
   } finally {
     client.release();
   }

@@ -1,6 +1,6 @@
 const user = require('./users');
 const gifs = require('./gifs');
-// const createUser = require('./user');
+const articles = require('./articles');
 
 module.exports = {
   userValidation: user.userValidation,
@@ -14,4 +14,10 @@ module.exports = {
   removeGif: gifs.removeGif,
   saveComment: gifs.saveComment,
   getGifComment: gifs.getGifComment,
+  newArticle: articles.newArticle,
+  getArticle: articles.getArticle,
+  updateArticle: articles.updateArticle,
+  delArticle: articles.delArticle,
+  saveArticleComment: articles.saveArticleComment,
+  getArticleComment: articles.getArticleComment,
 };
