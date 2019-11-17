@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon app",
     "start": "node app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test-init": "node_modules/.bin/jasmine init",
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",
     "pg": "^7.12.1",
+    "request": "^2.88.0",
     "validator": "^12.0.0",
     "winston": "^3.2.1"
   },
