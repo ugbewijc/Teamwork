@@ -47,6 +47,7 @@ describe('Teamwork Test Script,', () => {
       };
       Request.post(options, (error, response, body) => {
         // save user's token for futher tests
+        console.log(body);
         aToken = body.data.token;
         expect(body.status).toBe('success');
         expect(body.data.token).toBeInstanceOf(String);
@@ -54,15 +55,7 @@ describe('Teamwork Test Script,', () => {
         done();
       });
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
-  });// </user-signIn>
-=======
   });// </login-in-user>
->>>>>>> user
-=======
-  });// </login-in-user>
->>>>>>> user
 
   // <create-user>
   describe('POST /auth/create-user', () => {
@@ -133,40 +126,5 @@ describe('Teamwork Test Script,', () => {
       });
     });
   });
-  /*
-  body:
-{ status: 'success',
- data:
-  { token:
-     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluMkBkb21haW4uY29tIiwiaWF0IjoxNTczOTI0MjM4LCJleHAiOjE1NzM5Mjc4Mzh9.aGhWfpW6HxuaHAZd2_V4ghazVv91NReBmXbg1wQ_AmI',
-    userId: 133 } } }
-*/
+
 });
-
-/*
-Request(
-  {
-    method: 'PUT',
-    uri: 'http://mikeal.iriscouch.com/testjs/',
-    multipart: [
-      {
-        'content-type': 'application/json',
-        body: JSON.stringify(
-          { foo: 'bar', _attachments: { 'message.txt': { follows: true, length: 18, 'content type': 'text/plain' } } },
-        ),
-      },
-      { body: 'I am an attachment' },
-    ],
-  }, (error, response, body) => {
-  },
-);
-
-const options = {
-  uri: baseUrl,
-  json: {
-    email: 'admin2@domain.com',
-    password: 'user1',
-  },
-};
-Request.post(options)
-*/
