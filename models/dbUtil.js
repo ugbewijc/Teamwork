@@ -10,62 +10,25 @@ const runQuery = queryText => (async () => {
   let result;
   try {
     const res = await client.query(queryText);
-    result = await res.rows;
+    result = res.rows;
   } finally {
     client.release();
   }
   return result;
-<<<<<<< HEAD
-<<<<<<< HEAD
-})().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
+})().catch(() => { throw Error('Database Error'); });
 
-const getUserByMailnPwd = queryText => (async () => {
-  const client = await pool.connect();
-  let result;
-  try {
-    const res = await client.query(queryText);
-    result = res.rows[0].user_id;
-  } finally {
-    client.release();
-  }
-  return result;
-})().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
-=======
-})().catch((e) => { throw Error('Database Error'); });
-
->>>>>>> user
-=======
-})().catch((e) => { throw Error('Database Error'); });
-
->>>>>>> user
 
 const insertQuery = (queryText, values) => (async () => {
   const client = await pool.connect();
   let result;
   try {
     const res = await client.query(queryText, values);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    result = await res.rows;
-=======
     result = res.rows;
->>>>>>> user
-=======
-    result = res.rows;
->>>>>>> user
   } finally {
     client.release();
   }
   return result;
-<<<<<<< HEAD
-<<<<<<< HEAD
-})().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
-=======
 })().catch((e) => { throw Error(`Database Error ${e.message}`); });
->>>>>>> user
-=======
-})().catch((e) => { throw Error(`Database Error ${e.message}`); });
->>>>>>> user
 
 module.exports = {
   runQuery,
