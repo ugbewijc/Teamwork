@@ -8,10 +8,12 @@ const userValidation = (email, pwd) => {
   return user ID for valid users
   */
   try {
+    // TODO: Validate Input
     const isUserCredentialsValid = (validator.isEmail(email) && validator.isLength(pwd, { min: 1 }));
     if (!isUserCredentialsValid) {
       throw new Error('Invalid User Credentials');
     }
+    // TODO: Get User by Email and Password
     return models.getUserByMailAndPwd(email, pwd);
   } catch (e) {
     throw e;

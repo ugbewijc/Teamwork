@@ -15,7 +15,7 @@ const signInUser = async (req, res, next) => {
       tokenId = await util.generateUserToken(email);
     }
     const isUser = await isUserValid.uid;
-    res.setHeader('token', tokenId);
+    // res.setHeader('token', tokenId);
     res.json({ status: 'success', data: { token: tokenId, userId: isUser } });
   } catch (err) {
     res.json({ status: 'error', error: err.message });
@@ -30,7 +30,7 @@ const createUser = async (req, res, next) => {
     if (result) {
       throw new Error('Email already exist');
     }
-    const newUserId = await services.createNewUser(req.body).then(uid => uid);
+    const newUserId = await services.createNewUser(req.body).then(uid => uid[0].user_id);
     const tokenId = await util.generateUserToken(req.body.email);
     res.json({ status: 'success', data: { message: 'User account successfully created', token: tokenId, userid: newUserId } });
   } catch (e) {

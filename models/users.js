@@ -1,40 +1,44 @@
 require('dotenv').config();
-const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const { runQuery, insertQuery } = require('./dbUtil');
+const { insertQuery } = require('./dbUtil');
 
 const salt = bcrypt.genSaltSync(10);
 
 const getUserByEmail = (email) => {
   if (email === process.env.AEM) {
-    return process.env.AID;
+    return Number(process.env.AID);
+    // return process.env.AID;
   }
-  const userEmail = validator.escape(email); // escape input
-  const sqlStatement = `select * from users where email = '${userEmail}'`;
-  return runQuery(sqlStatement).then(res => res);
+  const sqlStatement = 'select * from users where email = $1';
+  const values = [email];
+  return insertQuery(sqlStatement, values);
 };
 
 const getUserByMailAndPwd = (email, password) => {
   try {
     if ((email === process.env.AEM) && (password === process.env.APWD)) {
-      return { uid: process.env.AID, isAdmin: true };
+      return { uid: Number(process.env.AID), isAdmin: true };
     }
+<<<<<<< HEAD
     return getUserByEmail(email).then((uid) => {
       if (!uid[0]) {
         throw new Error('Invalid Email or Password');
+=======
+    return getUserByEmail(email).then((user) => {
+      if (!user[0].password) {
+        throw Error('Invalid Email or Password');
+>>>>>>> user
       }
-      // console.log(uid);
-      if (bcrypt.compareSync(password, uid[0].password)) {
-        return { uid: uid[0].user_id, isAdmin: false };
+      if (bcrypt.compareSync(password, user[0].password)) {
+        return { uid: user[0].user_id, isAdmin: false };
       }
     });
   } catch (e) {
-    throw new Error('Invalid Email or Password');
+    throw Error('Invalid Email or Password');
   }
 };
 
 const saveUser = (items) => {
-  const userEmail = validator.escape(items.email); // escape input
   const hashPwd = bcrypt.hashSync(items.password, salt);
   const sqlStatement = `INSERT INTO
       users(firstName, lastName, email, password, gender, address, jobRole, department)
@@ -42,7 +46,7 @@ const saveUser = (items) => {
   const values = [
     items.firstName,
     items.lastName,
-    userEmail,
+    items.email,
     hashPwd,
     items.gender,
     items.address,

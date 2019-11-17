@@ -15,6 +15,7 @@ const runQuery = queryText => (async () => {
     client.release();
   }
   return result;
+<<<<<<< HEAD
 })().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
 
 const getUserByMailnPwd = queryText => (async () => {
@@ -28,22 +29,33 @@ const getUserByMailnPwd = queryText => (async () => {
   }
   return result;
 })().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
+=======
+})().catch((e) => { throw Error('Database Error'); });
+
+>>>>>>> user
 
 const insertQuery = (queryText, values) => (async () => {
   const client = await pool.connect();
   let result;
   try {
     const res = await client.query(queryText, values);
+<<<<<<< HEAD
     result = await res.rows;
+=======
+    result = res.rows;
+>>>>>>> user
   } finally {
     client.release();
   }
   return result;
+<<<<<<< HEAD
 })().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
+=======
+})().catch((e) => { throw Error(`Database Error ${e.message}`); });
+>>>>>>> user
 
 module.exports = {
   runQuery,
-  getUserByMailnPwd,
   insertQuery,
 };
 

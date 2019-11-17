@@ -54,7 +54,11 @@ describe('Teamwork Test Script,', () => {
         done();
       });
     });
+<<<<<<< HEAD
   });// </user-signIn>
+=======
+  });// </login-in-user>
+>>>>>>> user
 
   // <create-user>
   describe('POST /auth/create-user', () => {
