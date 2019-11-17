@@ -55,7 +55,11 @@ describe('Teamwork Test Script,', () => {
       });
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
   });// </user-signIn>
+=======
+  });// </login-in-user>
+>>>>>>> user
 =======
   });// </login-in-user>
 >>>>>>> user

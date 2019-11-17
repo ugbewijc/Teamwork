@@ -4,7 +4,11 @@ const controller = require('../controllers');
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const apiRouter = express.Router();
+=======
+const apiRouter = express.Router();/*
+>>>>>>> user
 =======
 const apiRouter = express.Router();/*
 >>>>>>> user
@@ -18,6 +22,7 @@ apiRouter.get('/v1/gifs/:gifId', middleware.auth, controller.getGif);
 apiRouter.post('/v1/gifs/:gifId/comment', middleware.auth, controller.createComment);
 apiRouter.delete('/v1/gifs/:gifId', middleware.auth, controller.deleteGif);
 <<<<<<< HEAD
+<<<<<<< HEAD
 apiRouter.post('/v1/gifs', middleware.auth, middleware.uploadM.single('image'), controller.createGif);
 apiRouter.post('/v1/auth/signin', controller.signInUser);
 apiRouter.post('/v1/auth/create-user', middleware.adminAuth, controller.createUser);
@@ -28,6 +33,11 @@ apiRouter.post('/comments', (req, res) => {
 apiRouter.post('/subscriptions', (req, res) => {
   res.send('An alligator approaches!');
 });
+=======
+apiRouter.post('/v1/gifs', middleware.auth, middleware.uploadM.single('image'), controller.createGif); */
+apiRouter.post('/v1/auth/signin', controller.signInUser);
+apiRouter.post('/v1/auth/create-user', middleware.adminAuth, controller.createUser);
+>>>>>>> user
 =======
 apiRouter.post('/v1/gifs', middleware.auth, middleware.uploadM.single('image'), controller.createGif); */
 apiRouter.post('/v1/auth/signin', controller.signInUser);

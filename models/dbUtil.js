@@ -16,6 +16,7 @@ const runQuery = queryText => (async () => {
   }
   return result;
 <<<<<<< HEAD
+<<<<<<< HEAD
 })().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
 
 const getUserByMailnPwd = queryText => (async () => {
@@ -33,6 +34,10 @@ const getUserByMailnPwd = queryText => (async () => {
 })().catch((e) => { throw Error('Database Error'); });
 
 >>>>>>> user
+=======
+})().catch((e) => { throw Error('Database Error'); });
+
+>>>>>>> user
 
 const insertQuery = (queryText, values) => (async () => {
   const client = await pool.connect();
@@ -40,7 +45,11 @@ const insertQuery = (queryText, values) => (async () => {
   try {
     const res = await client.query(queryText, values);
 <<<<<<< HEAD
+<<<<<<< HEAD
     result = await res.rows;
+=======
+    result = res.rows;
+>>>>>>> user
 =======
     result = res.rows;
 >>>>>>> user
@@ -49,7 +58,11 @@ const insertQuery = (queryText, values) => (async () => {
   }
   return result;
 <<<<<<< HEAD
+<<<<<<< HEAD
 })().catch((e) => { throw Error(`Could not update database. ${e.message}`); });
+=======
+})().catch((e) => { throw Error(`Database Error ${e.message}`); });
+>>>>>>> user
 =======
 })().catch((e) => { throw Error(`Database Error ${e.message}`); });
 >>>>>>> user

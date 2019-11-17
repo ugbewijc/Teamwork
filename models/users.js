@@ -19,15 +19,9 @@ const getUserByMailAndPwd = (email, password) => {
     if ((email === process.env.AEM) && (password === process.env.APWD)) {
       return { uid: Number(process.env.AID), isAdmin: true };
     }
-<<<<<<< HEAD
-    return getUserByEmail(email).then((uid) => {
-      if (!uid[0]) {
-        throw new Error('Invalid Email or Password');
-=======
     return getUserByEmail(email).then((user) => {
       if (!user[0].password) {
         throw Error('Invalid Email or Password');
->>>>>>> user
       }
       if (bcrypt.compareSync(password, user[0].password)) {
         return { uid: user[0].user_id, isAdmin: false };
@@ -53,7 +47,7 @@ const saveUser = (items) => {
     items.jobRole,
     items.department,
   ];
-  return insertQuery(sqlStatement, values).then(result => result.user_id);
+  return insertQuery(sqlStatement, values);
 };
 
 module.exports = {
