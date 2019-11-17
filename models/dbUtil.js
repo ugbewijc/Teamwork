@@ -5,24 +5,6 @@ const pool = new Pool({
   connectionString: process.env.POSTGRES_URL,
 });
 
-/*
-const runQuery = (queryText) => {
-  // console.log(queryText);
-  let result;
-  (async () => {
-    const client = await pool.connect();
-    try {
-      const res = await client.query(queryText);
-      // console.log(res.rows);
-      result = res.rows; // JSON.parse()
-    } finally {
-      client.release();
-    }
-  })().catch((e) => { throw e; });
-
-  return result;
-};
-*/
 const runQuery = queryText => (async () => {
   const client = await pool.connect();
   let result;
@@ -33,39 +15,23 @@ const runQuery = queryText => (async () => {
     client.release();
   }
   return result;
-})().catch((e) => { throw e; });
+})().catch((e) => { throw Error('Database Error'); });
 
-/* getUserByMailnPwd function
-  retrive user details by user's email and pasword
-  return user's ID
-*/
-const getUserByMailnPwd = queryText => (async () => {
-  const client = await pool.connect();
-  let result;
-  try {
-    const res = await client.query(queryText);
-    result = res.rows[0].user_id;
-  } finally {
-    client.release();
-  }
-  return result;
-})().catch((e) => { throw e; });
 
 const insertQuery = (queryText, values) => (async () => {
   const client = await pool.connect();
   let result;
   try {
     const res = await client.query(queryText, values);
-    result = res.rows[0].user_id;
+    result = res.rows;
   } finally {
     client.release();
   }
   return result;
-})().catch((e) => { throw e; });
+})().catch((e) => { throw Error(`Database Error ${e.message}`); });
 
 module.exports = {
   runQuery,
-  getUserByMailnPwd,
   insertQuery,
 };
 
