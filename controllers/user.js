@@ -32,7 +32,7 @@ const createUser = async (req, res, next) => {
     }
     const newUserId = await services.createNewUser(req.body).then(uid => uid[0].user_id);
     const tokenId = await util.generateUserToken(req.body.email);
-    res.json({ status: 'success', data: { message: 'User account successfully created', token: tokenId, userid: newUserId } });
+    res.json({ status: 'success', data: { message: 'User account successfully created', token: tokenId, userId: newUserId } });
   } catch (e) {
     res.json({ status: 'error ', error: e.message });
   }

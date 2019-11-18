@@ -28,7 +28,6 @@ const doUserEmailExsit = (email) => {
   // check if email exsit
   try {
     return models.getUserByEmail(email).then((res) => {
-      // console.log(res[0].email);
       if (res[0] === undefined) {
         return false;
       }
