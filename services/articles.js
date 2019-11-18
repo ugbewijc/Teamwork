@@ -11,11 +11,7 @@ const newArticle = (userId, title, article) => {
   return models.saveArticle(userId, title, article);
 };
 
-const getArticle = (articleId) => {
-  // console.log('called getArticle services');
-  // console.log(typeof articleId);
-  return models.getArticle(articleId);
-};
+const getArticle = articleId => models.getArticle(articleId);
 
 const updateArticle = (userId, articleId, title, article) => {
   if (!validator.isLength(title, { min: 1, max: 255 })) {

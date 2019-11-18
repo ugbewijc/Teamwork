@@ -3,12 +3,12 @@ const middleware = require('../middlewares');
 const controller = require('../controllers');
 
 const apiRouter = express.Router();
-/*
+
 apiRouter.post('/v1/articles/:articleId/comment', middleware.auth, controller.postComment);
 apiRouter.get('/v1/articles/:articleId', middleware.auth, controller.getArticle);
 apiRouter.post('/v1/articles', middleware.auth, controller.createArticle);
 apiRouter.patch('/v1/articles/:articleId', middleware.auth, controller.editArticle);
-apiRouter.delete('/v1/articles/:articleId', middleware.auth, controller.deleteArticle);
+apiRouter.delete('/v1/articles/:articleId', middleware.auth, controller.deleteArticle);/*
 // apiRouter.get('/v1/gifs', middleware.auth, controller.getGif);
 apiRouter.get('/v1/gifs/:gifId', middleware.auth, controller.getGif);
 apiRouter.post('/v1/gifs/:gifId/comment', middleware.auth, controller.createComment);

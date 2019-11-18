@@ -6,9 +6,12 @@ const auth = (req, res, next) => {
     res.json({ status: 'error', error: 'User Not Logged In' });
   }
   try {
+    const decode = util.verifyUserToken(userToken);
+    req.userEmail = decode.email;
+    next();/*
     if (util.verifyUserToken(userToken)) {
       next();
-    }
+    } */
   } catch (e) {
     res.json({ status: 'error', error: 'User Not Logged In' });
   }

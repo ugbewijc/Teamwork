@@ -2,7 +2,6 @@ const Request = require('request');
 const token = require('../util/token');
 
 describe('Teamwork Test Script,', () => {
-
   /* Basic Setup */
   const baseUrl = 'http://localhost:3000/api/v1';
   const adminEmail = 'admin@domain.com';
@@ -19,9 +18,8 @@ describe('Teamwork Test Script,', () => {
   });
 
   /*
-  * Users Test
+  * User Test
   */
-
   describe('POST /auth/signin', () => {
     // <admin-signIn>
     it('Admin can sign in. It should return success status, along required responses', (done) => {
@@ -87,4 +85,129 @@ describe('Teamwork Test Script,', () => {
       });
     });// </create-user>
   });
+
+  /*
+  *Article Test
+  */
+
+  // <post-article>
+  xdescribe('POST /articles', () => {
+    it('Employee can Create an article. It should return success status, along required responses', (done) => {
+      // const uName = Math.floor(Math.random() * Math.floor(2000));
+      const options = {
+        uri: `${baseUrl}/articles`,
+        headers: {
+          token: uToken,
+        },
+        json: {
+          title: `${Date.now()} test`,
+          article: 'demo from test script',
+        },
+      };
+      Request.post(options, (error, response, body) => {
+        expect(body.status).toBe('success');
+        expect(body.data.message).toBeInstanceOf(String);
+        expect(body.data.articleId).toBeInstanceOf(Number);
+        expect(body.data.title).toBeInstanceOf(String);
+        expect(body.data.createdOn).toBeInstanceOf(String);
+        done();
+      });
+    });
+  });// </post-article>
+
+  // <get-article>
+  describe('GET /articles/<:articleId>', () => {
+    it('Employees can view a specific article. It should return success status, along required responses', (done) => {
+      // const articleId = Math.floor(Math.random() * Math.floor(10));
+      const options = {
+        uri: `${baseUrl}/articles/1`,
+        headers: {
+          token: uToken,
+        },
+        json: {},
+      };
+      Request.get(options, (error, response, body) => {
+        expect(body.status).toBe('success');
+        expect(body.data.id).toBeInstanceOf(Number);
+        expect(body.data.createdOn).toBeInstanceOf(String);
+        expect(body.data.title).toBeInstanceOf(String);
+        expect(body.data.article).toBeInstanceOf(String);
+        expect(body.data.comments).toBeInstanceOf(Object);
+        done();
+      });
+    });
+  });// </get-article>
+
+  // <patch-article>
+  describe('PATCH /articles/<:articleId>', () => {
+    it('Employees can Edit an article. It should return success status, along required responses', (done) => {
+      // const articleId = Math.floor(Math.random() * Math.floor(10));
+      const options = {
+        uri: `${baseUrl}/articles/10`,
+        headers: {
+          token: uToken,
+        },
+        json: {
+          title: ` Patch test on ${Date.now()} `,
+          article: 'Patch demo from test script',
+        },
+      };
+      Request.patch(options, (error, response, body) => {
+        expect(body.status).toBe('success');
+        expect(body.data.message).toBeInstanceOf(String);
+        expect(body.data.title).toBeInstanceOf(String);
+        expect(body.data.article).toBeInstanceOf(String);
+        done();
+      });
+    });
+  });// </get-article>
+
+  // <post-article-comments>
+  describe('POST /articles/<articleId>/comment', () => {
+    it('Employees can comment on other colleagues article post. It should return success status, along required responses', (done) => {
+      // const articleId = Math.floor(Math.random() * Math.floor(10));
+      const options = {
+        uri: `${baseUrl}/articles/10/comment`,
+        headers: {
+          token: uToken,
+        },
+        json: {
+          comment: ` comment test on ${Date.now()} `,
+        },
+      };
+      Request.post(options, (error, response, body) => {
+        expect(body.status).toBe('success');
+        expect(body.data.message).toBeInstanceOf(String);
+        expect(body.data.createdOn).toBeInstanceOf(String);
+        expect(body.data.articleTitle).toBeInstanceOf(String);
+        expect(body.data.article).toBeInstanceOf(String);
+        expect(body.data.comment).toBeInstanceOf(String);
+        done();
+      });
+    });
+  });// </post-article-comments>
+
+  // <delete-article>
+  describe('DELETE /articles/<:articleId>', () => {
+    it('Employees can comment on other colleagues article post. It should return success status, along required responses', (done) => {
+      // const articleId = Math.floor(Math.random() * Math.floor(10));
+      const options = {
+        uri: `${baseUrl}/articles/20`,
+        headers: {
+          token: uToken,
+        },
+        json: {
+        },
+      };
+      Request.delete(options, (error, response, body) => {
+        expect(body.status).toBe('success');
+        expect(body.data.message).toBeInstanceOf(String);
+        done();
+      });
+    });
+  });// <delete-article>
+
+  /*
+  *Gif Test
+  */
 });

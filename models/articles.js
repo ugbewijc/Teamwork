@@ -10,7 +10,7 @@ const saveArticle = (userId, title, article) => {
   const values = [userId, eTitle, eArticle];
   return insertQuery(sqlStatement, values);
 };
-
+// TODO: Get Article by ID from Database
 const getArticle = (articleId) => {
   const sqlStatement = 'SELECT * FROM articles WHERE article_id = $1';
   const values = [articleId];
@@ -21,7 +21,7 @@ const updateArticle = (userId, articleId, title, article) => {
   const eTitle = validator.escape(title);
   const eArticle = validator.escape(article);
   const sqlStatement = `UPDATE articles SET title= $1, article=$2
-   WHERE article_id = $3  AND user_id = $4
+   WHERE article_id = $3 AND user_id = $4
    RETURNING *`;
   const values = [eTitle, eArticle, articleId, userId];
   return insertQuery(sqlStatement, values);

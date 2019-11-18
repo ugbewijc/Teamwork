@@ -10,7 +10,7 @@ const jwtOptions = { algorithm: 'HS256', expiresIn: '1h' };
 const generateAdminToken = payLoad => jwt.sign({ email: payLoad }, jwtSecretA, jwtOptions);
 const verifyAdminToken = token => jwt.verify(token, jwtSecretA, jwtOptions, (err, decod) => {
   if (err) {
-    throw new Error();
+    throw Error('User Not Logged In');
   }
   return true;
 // decod.email
@@ -19,10 +19,11 @@ const verifyAdminToken = token => jwt.verify(token, jwtSecretA, jwtOptions, (err
 const generateUserToken = payLoad => jwt.sign({ email: payLoad }, jwtSecretU, jwtOptions);
 const verifyUserToken = token => jwt.verify(token, jwtSecretU, jwtOptions, (err, decod) => {
   if (err) {
-    return verifyAdminToken(token);
+    // return verifyAdminToken(token);
+    throw Error('User Not Logged In');
   }
-  //  return decod.email;
-  return true;
+  //   return true;
+  return decod;
 });
 
 const getEmailFromToken = token => jwt.verify(token, jwtSecretU, jwtOptions, (err, decod) => {
