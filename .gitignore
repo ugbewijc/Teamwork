@@ -13,6 +13,5 @@ sql.js
 .DS_Store
 Thumbs.db
 .env
-tmp-uploads/
 
 package-lock.json
