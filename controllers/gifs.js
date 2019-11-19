@@ -4,7 +4,6 @@ const services = require('../services');
 
 const createGif = async (req, res) => {
   try {
-    console.log(req.file);
     // TODO: Upload Gifs to Cloudinary
     const img = await services.uploadGifs(req.file.path, req.file.filename);
     // TODO: Remove file from temp location on the server

@@ -303,4 +303,26 @@ describe('Teamwork Test Script,', () => {
       });
     });
   });// <delete-gif>
+
+  /*
+  *Get Feed Test
+  */
+  // <get-feed>
+  describe('GET /feed', () => {
+    it(`Employees can view all articles or gifs, showing the most recently posted articles
+      or gifs first. It should return success status, along required responses`, (done) => {
+      const options = {
+        uri: `${baseUrl}/feed`,
+        headers: {
+          token: uToken,
+        },
+        json: {},
+      };
+      Request.get(options, (error, response, body) => {
+        expect(body.status).toBe('success');
+        expect(body.data).toBeInstanceOf(Object);
+        done();
+      });
+    });
+  });// </get-feed>
 });

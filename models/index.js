@@ -1,6 +1,7 @@
 const user = require('./users');
 const gifs = require('./gifs');
 const articles = require('./articles');
+const feed = require('./feeds');
 // const createUser = require('./user');
 
 module.exports = {
@@ -18,4 +19,5 @@ module.exports = {
   deleteArticle: articles.deleteArticle,
   saveArticleComment: articles.saveArticleComment,
   articleComment: articles.articleComment,
+  allFeed: feed.allFeed,
 };

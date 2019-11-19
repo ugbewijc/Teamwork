@@ -1,6 +1,7 @@
 const user = require('./users');
 const gifs = require('./gifs');
 const articles = require('./articles');
+const feed = require('./feeds');
 
 module.exports = {
   userValidation: user.userValidation,
@@ -20,4 +21,5 @@ module.exports = {
   delArticle: articles.delArticle,
   saveArticleComment: articles.saveArticleComment,
   getArticleComment: articles.getArticleComment,
+  getArticlesNGif: feed.getArticlesNGif,
 };
