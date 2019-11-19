@@ -26,14 +26,14 @@ const removeGif = (gifName, gifId) => {
 
 const saveGif = (userId, gifTitle, fileName, gifUrl) => {
   if (!validator.isLength(gifTitle, { min: 1 })) {
-    throw new Error('Title field cannot be empty');
+    throw Error('Title field cannot be empty');
   }
   return models.saveGifToDB(userId, gifTitle, fileName, gifUrl);
 };
 
 const getGif = (gifId) => {
   if (!validator.isInt(gifId)) {
-    throw new Error('Invalid Gif');
+    throw Error('Invalid Gif');
   }
   return models.getSingleGif(gifId);
 };
@@ -50,7 +50,7 @@ const saveComment = (userId, gifId, comment) => {
 
 const getGifComment = (gifId) => {
   if (!validator.isInt(gifId)) {
-    throw new Error('Invalid Gif');
+    throw Error('Invalid Gif');
   }
   return models.gifComment(gifId);
 };

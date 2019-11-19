@@ -1,5 +1,5 @@
 const validator = require('validator');
-const { runQuery, insertQuery } = require('./dbUtil');
+const { insertQuery } = require('./dbUtil');
 
 const saveGifToDB = (userId, gifTitle, fileName, gifUrl) => {
   const sqlStatement = `INSERT INTO
@@ -10,18 +10,15 @@ const saveGifToDB = (userId, gifTitle, fileName, gifUrl) => {
 };
 
 const getSingleGif = (id) => {
-  const gifId = validator.escape(id); // escape input
-  const sqlStatement = `select * from gifs where gif_id = '${gifId}'`;
-  return runQuery(sqlStatement);
+  const sqlStatement = 'select * from gifs where gif_id = $1';
+  const values = [id];
+  return insertQuery(sqlStatement, values);
 };
 
 const deleteGif = (gifId) => {
-  try {
-    const sqlStatement = `delete from gifs where gif_id = '${gifId}'`;
-    return runQuery(sqlStatement);
-  } catch (e) {
-    throw Error('Could Not Update Database');
-  }
+  const sqlStatement = 'delete from gifs where gif_id = $1';
+  const values = [gifId];
+  return insertQuery(sqlStatement, values);
 };
 
 const saveGifComment = (userId, gifId, comment) => {
@@ -38,8 +35,9 @@ const saveGifComment = (userId, gifId, comment) => {
 };
 
 const gifComment = (gifId) => {
-  const sqlStatement = `select comment_id as commentId,user_id as authorId, comment from gifs_comments where gif_id = '${gifId}'`;
-  return runQuery(sqlStatement);
+  const sqlStatement = 'select comment_id as commentId,user_id as authorId, comment from gifs_comments where gif_id = $1';
+  const values = [gifId];
+  return insertQuery(sqlStatement, values);
 };
 
 module.exports = {
