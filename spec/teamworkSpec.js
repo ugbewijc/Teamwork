@@ -3,10 +3,10 @@ const fs = require('fs');
 const token = require('../util/token');
 
 describe('Teamwork Test Script,', () => {
-  /* Basic Setup */
+  /* Basic Setup http://localhost:3000/api/v1 */
   const baseUrl = 'https://ugbewijc-teamwork.herokuapp.com/api/v1';
   const adminEmail = 'admin@domain.com';
-  const adminPwd = 'admin';
+  const adminPwd = 'demo';
   const userEmail = 'demouser@domain.com';
   const userPwd = 'demo';
   const aToken = token.generateAdminToken(adminEmail);
