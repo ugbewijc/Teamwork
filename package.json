@@ -7,7 +7,8 @@
     "dev": "nodemon app",
     "start": "node app",
     "test-init": "node_modules/.bin/jasmine init",
-    "test": "jasmine"
+    "test": "jasmine",
+    "coveralls": "jasmine --coverage && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
