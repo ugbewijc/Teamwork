@@ -3,7 +3,7 @@ const fs = require('fs');
 const token = require('../util/token');
 
 describe('Teamwork Test Script,', () => {
-  /* Basic Setup http://localhost:3000/api/v1 */
+  /* Basic Setup  http://localhost:3000/api/v1 https://ugbewijc-teamwork.herokuapp.com/api/v1 */
   const baseUrl = 'https://ugbewijc-teamwork.herokuapp.com/api/v1';
   const adminEmail = 'admin@domain.com';
   const adminPwd = 'demo';
@@ -212,7 +212,7 @@ describe('Teamwork Test Script,', () => {
   *Gif Test
   */
   // <post-gif>
-  describe('POST /gifs', () => {
+  xdescribe('POST /gifs', () => {
     it('Employee can Create a gif. It should return success status, along required responses', (done) => {
       const fomData = {
         // path: 'gifs',
